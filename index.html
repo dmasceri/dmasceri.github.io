@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dave Masceri — Projects</title>
+<meta name="description" content="Things I build to understand them — a small archive of research code, games, and market tooling by Dave Masceri." />
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #6b6b6b;
+    --faint: #9a9a9a;
+    --line: #e8e6e1;
+    --accent: #3b5bdb;
+    --accent-soft: #eef1fd;
+    --radius: 14px;
+    --maxw: 720px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header { padding: 96px 0 56px; }
+  .eyebrow {
+    font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--faint); margin: 0 0 18px;
+  }
+  h1 {
+    font-size: clamp(34px, 6vw, 48px);
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin: 0 0 20px; font-weight: 700;
+  }
+  .lede { font-size: 19px; color: var(--muted); margin: 0; max-width: 60ch; }
+  .lede strong { color: var(--ink); font-weight: 600; }
+  .contact { margin-top: 26px; font-size: 15px; color: var(--muted); }
+  .contact a { color: var(--ink); border-bottom: 1px solid var(--line); }
+  .contact a:hover { border-color: var(--accent); text-decoration: none; }
+  .dot { color: var(--line); margin: 0 10px; }
+
+  /* Section heading */
+  .section-label {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--faint); margin: 0 0 8px;
+  }
+  .section-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* Project cards */
+  .projects { padding-bottom: 40px; display: grid; gap: 22px; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 30px 30px 26px;
+    transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  }
+  .card:hover {
+    border-color: #d8d5ce;
+    box-shadow: 0 10px 30px -18px rgba(0,0,0,0.22);
+    transform: translateY(-2px);
+  }
+  .card-top {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap; margin-bottom: 4px;
+  }
+  .card h3 { font-size: 22px; margin: 0; letter-spacing: -0.01em; }
+  .card h3 a { color: var(--ink); }
+  .card h3 a:hover { color: var(--accent); text-decoration: none; }
+  .status {
+    font-size: 12px; color: var(--muted);
+    background: var(--accent-soft); color: var(--accent);
+    padding: 3px 10px; border-radius: 999px; white-space: nowrap;
+  }
+  .status.archive { background: #f2efe9; color: #8a7a55; }
+  .tagline { font-size: 15px; color: var(--muted); margin: 2px 0 14px; font-weight: 500; }
+  .card p { margin: 0 0 16px; font-size: 15.5px; color: #333; }
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 18px; }
+  .tag {
+    font-size: 12.5px; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 6px; padding: 2px 9px;
+  }
+  .links { display: flex; gap: 20px; font-size: 14.5px; font-weight: 500; }
+  .links a { display: inline-flex; align-items: center; gap: 6px; }
+  .links a .arrow { transition: transform .15s ease; }
+  .links a:hover .arrow { transform: translateX(2px); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    margin-top: 40px; padding: 40px 0 64px;
+    font-size: 14px; color: var(--faint);
+  }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">Dave Masceri</p>
+      <h1>I build things to understand them.</h1>
+      <p class="lede">
+        I'm a structural engineer by training who never really stopped prototyping.
+        This is a small, honest archive of things I've made &mdash; a
+        <strong>research code base</strong> from my doctoral work, a
+        <strong>game</strong> built to nail down one mechanic, and a
+        <strong>market observation dashboard</strong> built to sharpen intuition.
+        Each one started as a question I could only answer by building it.
+      </p>
+      <p class="contact">
+        <a href="https://github.com/dmasceri">github.com/dmasceri</a>
+        <span class="dot">&middot;</span>
+        <a href="mailto:d.masceri@gmail.com">d.masceri@gmail.com</a>
+      </p>
+    </header>
+
+    <main>
+      <p class="section-label">Projects</p>
+      <div class="projects">
+
+        <!-- RAMPS -->
+        <article class="card">
+          <div class="card-top">
+            <h3><a href="https://github.com/dmasceri/ramps">RAMPS</a></h3>
+            <span class="status archive">Research archive</span>
+          </div>
+          <p class="tagline">Rapid Automated Modeling for the Performance of Structures</p>
+          <p>
+            MATLAB software that builds and load-rates finite-element models of highway bridges
+            by driving the Strand7 solver through its API &mdash; sizing girders to AASHTO code,
+            generating the 3D model, running simulated dead- and live-load tests, and computing
+            rating factors with no manual modeling. Built during my doctoral research at Drexel
+            and matured at Rutgers as the software companion to the THMPR rapid-testing system
+            (European patent; ASCE Pankow Award). <strong>Why I made it:</strong> together the two
+            compressed a full field assessment of a bridge from roughly a week down to a single
+            day. It's archived here as written &mdash; the interesting part is what it does, not
+            how pretty it is.
+          </p>
+          <div class="tags">
+            <span class="tag">MATLAB</span>
+            <span class="tag">Strand7 API</span>
+            <span class="tag">FEA</span>
+            <span class="tag">AASHTO LRFD/ASD</span>
+            <span class="tag">NBI</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/dmasceri/ramps">Repository <span class="arrow">&rarr;</span></a>
+          </div>
+        </article>
+
+        <!-- MORPHFLIGHT -->
+        <article class="card">
+          <div class="card-top">
+            <h3><a href="https://github.com/dmasceri/morphflight">MORPHFLIGHT</a></h3>
+            <span class="status">Playable prototype</span>
+          </div>
+          <p class="tagline">On-rails cave flyer with a morph-weapon core verb</p>
+          <p>
+            You auto-fly forward through a cavernous stone hall, dodging and aiming with the stick
+            while <em>reshaping your weapon's spread</em> &mdash; orb, horizontal disk, vertical
+            disk &mdash; to match the enemy formation in front of you. Match the shape and the
+            formation melts and a chain builds; mismatch and it only chips. <strong>Why I made
+            it:</strong> to prove out one idea &mdash; that a two-layer "aim <em>and</em> morph"
+            verb could carry a shooter &mdash; and lock the design decisions before any polish.
+            This repo is the runnable vertical slice from that prototyping phase.
+          </p>
+          <div class="tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">Three.js</span>
+            <span class="tag">WebGL</span>
+            <span class="tag">Vite</span>
+            <span class="tag">Gamepad API</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/dmasceri/morphflight">Repository <span class="arrow">&rarr;</span></a>
+          </div>
+        </article>
+
+        <!-- INTRADAY DASHBOARD -->
+        <article class="card">
+          <div class="card-top">
+            <h3><a href="https://github.com/dmasceri/intraday-regime-dashboard">Intraday Regime Dashboard</a></h3>
+            <span class="status">Working tool</span>
+          </div>
+          <p class="tagline">Read-only market regime &amp; intraday observation dashboard</p>
+          <p>
+            A calibration and observation tool for intraday equity metrics (SPY / QQQ / IWM)
+            against an Alpaca paper account and free FRED data &mdash; <strong>no orders, no
+            positions.</strong> An engine process owns all the data I/O and metric math and writes
+            a permanent calibration log to SQLite; a thin Streamlit UI just reads and renders, and
+            stays honest about staleness when the engine is down. <strong>Why I made it:</strong> I
+            wanted to <em>watch</em> how regime signals behave through a live session and build
+            intuition before ever risking a dollar. Ships as a two-process Docker stack.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Alpaca &amp; FRED APIs</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/dmasceri/intraday-regime-dashboard">Repository <span class="arrow">&rarr;</span></a>
+          </div>
+        </article>
+
+      </div>
+    </main>
+
+    <footer>
+      Built and maintained by Dave Masceri &middot;
+      <a href="https://github.com/dmasceri">github.com/dmasceri</a><br />
+      More projects land here as I finish them.
+    </footer>
+  </div>
+</body>
+</html>
