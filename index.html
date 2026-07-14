@@ -96,11 +96,11 @@
       <p class="eyebrow">Dave Masceri &middot; Projects &amp; Devlog</p>
       <h1>I build things to understand them.</h1>
       <p class="lede">
-        I'm a structural engineer by training who never really stopped prototyping. This is a
-        running log of things I make &mdash; a <strong>research code base</strong> from my
-        doctoral work, a <strong>game</strong> built to nail down one mechanic, and a
-        <strong>market observation tool</strong> built to sharpen intuition. Each started as a
-        question I could only answer by building it. I post updates here as I finish phases.
+        I'm a structural engineer by training who came to product management through building
+        software for other engineers. This is a running log of things I make &mdash; a
+        <strong>research code base</strong> from my doctoral work, a <strong>game</strong> built
+        to explore what was possible with Claude Code, and a <strong>market observation tool</strong>
+        built to sharpen intuition. Each started as a question I could only answer by building it.
       </p>
       <p class="contact">
         <a href="https://github.com/dmasceri">github.com/dmasceri</a>
@@ -191,11 +191,13 @@
             <h3><a href="https://github.com/dmasceri/morphflight">MORPHFLIGHT</a></h3>
             <span class="status">Playable prototype</span>
           </div>
-          <p class="tagline">On-rails cave flyer with a morph-weapon core verb</p>
+          <p class="tagline">On-rails cave flyer with a morph-weapon core mechanic</p>
 
-          <figure class="figure placeholder">
-            <span class="ph-title">Screenshot — stalactite environment</span>
-            <span class="ph-sub">drop morphflight-stalactite.png into /img and I'll wire it in here</span>
+          <figure class="figure">
+            <video src="img/morphflight-demo.mp4" poster="img/morphflight-poster.jpg"
+                   autoplay loop muted playsinline preload="metadata"
+                   style="display:block;width:100%;height:auto;background:#05060a;"></video>
+            <figcaption>Self-playing demo: morphing to match each wave across five environments.</figcaption>
           </figure>
 
           <p>
@@ -205,20 +207,23 @@
             bonuses stack; mismatch it and you only chip away at enemies.
           </p>
           <p>
-            There's a handful of environments to play with. By the end of the prototype phase I'd
-            become more interested in the parametric environment-building than the core game loop
-            &mdash; check them out.
+            There's a handful of environments to play with that I had fun making after exploring
+            the morph-and-shoot mechanic. By the end of the prototype phase I started to investigate
+            syncing the procedurally-generated environment to music. More to come on that in the next
+            update.
           </p>
           <p>
             <b style="color:var(--ink)">Side note:</b> play with an Xbox controller linked to your PC
             over a cable or Bluetooth &mdash; it's way more fun.
           </p>
           <p>
-            <b style="color:var(--ink)">Why I made it:</b> to prove out one idea &mdash; that a
-            two-layer "aim <em>and</em> morph" gameplay loop could carry a shooter. Environments and
-            enemies are the real test, and I'll need to hammer on those to see if this can be really
-            fun. This repo is the runnable vertical slice from that prototyping phase. Did I prove out
-            the idea?
+            <b style="color:var(--ink)">Why I made it:</b> initially, to explore the initial idea
+            &mdash; that a two-layer "aim <em>and</em> morph" gameplay loop could carry a shooter.
+            I'd be remiss if I didn't mention my wife reminded me while writing this blog post that
+            <em>Dead Space</em> used exactly this vertical/horizontal weapon morph in an FPS package.
+            Environments and enemies are the real test, and I'll need to hammer on those to see if
+            this can be really fun. This repo is the runnable vertical slice from that prototyping
+            phase. Did I prove out the idea?
           </p>
 
           <blockquote class="epigraph">
@@ -236,12 +241,13 @@
           </div>
           <div class="links">
             <a href="https://github.com/dmasceri/morphflight">Repository <span class="arrow">&rarr;</span></a>
-            <span class="soon">Playable demo &mdash; coming once it's deployed</span>
+            <a href="https://dmasceri.github.io/morphflight/">Play it <span class="arrow">&rarr;</span></a>
           </div>
 
           <div class="devlog">
             <h4>Dev updates</h4>
             <ul>
+              <li><time>Jul 2026</time><span>Deployed a <b>live playable build</b> to GitHub Pages, with a self-playing demo reel across all five environments.</span></li>
               <li><time>Jun 2026</time><span>Vertical slice: neon-vector overhaul, <b>5 swappable environments</b>, asteroid pass, and a directional dash mechanic.</span></li>
               <li><time>Next</time><span>Lean into <b>parametric environment generation</b>; stress-test whether the morph verb carries longer sessions.</span></li>
             </ul>
@@ -256,9 +262,9 @@
           </div>
           <p class="tagline">Read-only market regime &amp; intraday observation dashboard</p>
 
-          <figure class="figure placeholder">
-            <span class="ph-title">Screenshot — observation grid &amp; the &ldquo;why&rdquo; drawer</span>
-            <span class="ph-sub">drop intraday-dashboard.png into /img and I'll wire it in here</span>
+          <figure class="figure">
+            <img src="img/intraday-regime.png" alt="Dashboard: regime context up top, the SPY/QQQ/IWM intraday grid, and the per-ticker why drawer" />
+            <figcaption>Regime context up top, the SPY / QQQ / IWM grid, and the per-ticker &ldquo;why&rdquo; drawer that spells out each gate.</figcaption>
           </figure>
 
           <p>
@@ -279,6 +285,11 @@
             through a live session and build intuition before ever risking a dollar. Ships as a
             two-process Docker stack. Next step? Training a trading algorithm.
           </p>
+
+          <figure class="figure">
+            <img src="img/intraday-chart.png" alt="SPY 5-minute chart with VWAP, ATR band, opening range, and volume, ADX and RSI panes" />
+            <figcaption>The focused ticker&rsquo;s 5-min chart: VWAP, ATR&plusmn; band, and opening range, with volume, ADX, and RSI panes below.</figcaption>
+          </figure>
 
           <div class="tags">
             <span class="tag">Python</span>
