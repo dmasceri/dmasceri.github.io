@@ -3,321 +3,83 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Dave Masceri — Projects &amp; Devlog</title>
-<meta name="description" content="Things I build to understand them — research code, a game, and market tooling, with running dev updates. By Dave Masceri." />
-<style>
-  :root {
-    --bg: #0c0e12;
-    --surface: #14171d;
-    --surface-2: #1a1e26;
-    --ink: #e7e9ee;
-    --muted: #9aa1ac;
-    --faint: #6b727d;
-    --line: #262b34;
-    --accent: #7f9cff;
-    --accent-soft: #1b2133;
-    --mat: #eef0f3;
-    --radius: 14px;
-    --maxw: 760px;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0; background: var(--bg); color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.65; -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
-
-  header { padding: 92px 0 44px; }
-  .eyebrow { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin: 0 0 18px; }
-  h1 { font-size: clamp(32px, 5.5vw, 46px); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 20px; font-weight: 700; }
-  .lede { font-size: 18.5px; color: var(--muted); margin: 0; max-width: 62ch; }
-  .lede strong { color: var(--ink); font-weight: 600; }
-  .contact { margin-top: 24px; font-size: 15px; color: var(--muted); }
-  .contact a { color: var(--ink); border-bottom: 1px solid var(--line); }
-  .contact a:hover { border-color: var(--accent); text-decoration: none; }
-  .dot { color: var(--line); margin: 0 10px; }
-
-  .section-label { display: flex; align-items: center; gap: 16px; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin: 0 0 10px; }
-  .section-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-
-  .projects { padding-bottom: 24px; display: grid; gap: 26px; }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 30px 24px; }
-  .card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
-  .card h3 { font-size: 23px; margin: 0; letter-spacing: -0.01em; }
-  .card h3 a { color: var(--ink); }
-  .card h3 a:hover { color: var(--accent); text-decoration: none; }
-  .status { font-size: 12px; background: var(--accent-soft); color: var(--accent); padding: 4px 11px; border-radius: 999px; white-space: nowrap; }
-  .status.archive { background: #221f16; color: #cbb06a; }
-  .status.wip { background: #10231c; color: #58c99a; }
-  .tagline { font-size: 15px; color: var(--muted); margin: 2px 0 16px; font-weight: 500; }
-  .card p { margin: 0 0 15px; font-size: 15.5px; color: #cfd3da; }
-  .card p:last-of-type { margin-bottom: 0; }
-
-  .figure { margin: 18px 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
-  .figure img { display: block; width: 100%; height: auto; background: var(--mat); }
-  .figure figcaption { font-size: 12.5px; color: var(--faint); padding: 8px 12px; background: var(--surface-2); }
-  .figure.placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center;
-    min-height: 168px; border-style: dashed; border-color: #333a45; background: var(--surface-2);
-    color: var(--faint); text-align: center; padding: 22px; gap: 6px; }
-  .figure.placeholder .ph-title { font-size: 13.5px; color: var(--muted); font-weight: 600; letter-spacing: .03em; }
-  .figure.placeholder .ph-sub { font-size: 12px; }
-
-  blockquote.epigraph { margin: 18px 0; padding: 12px 18px; border-left: 3px solid var(--accent);
-    background: var(--surface-2); border-radius: 0 8px 8px 0; color: var(--ink); font-style: italic; font-size: 15px; }
-  blockquote.epigraph cite { display: block; margin-top: 6px; font-style: normal; font-size: 12.5px; color: var(--faint); }
-  blockquote.epigraph .gifnote { display: block; margin-top: 8px; font-style: normal; font-size: 11.5px; color: #4f95d6; letter-spacing: .02em; }
-
-  .tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 18px 0 0; }
-  .tag { font-size: 12.5px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 2px 9px; }
-  .links { display: flex; gap: 18px; font-size: 14.5px; font-weight: 500; margin-top: 18px; flex-wrap: wrap; }
-  .links a { display: inline-flex; align-items: center; gap: 6px; }
-  .links a .arrow { transition: transform .15s ease; }
-  .links a:hover .arrow { transform: translateX(2px); }
-  .links .soon { color: var(--faint); font-weight: 500; }
-
-  .devlog { margin-top: 22px; padding-top: 16px; border-top: 1px dashed var(--line); }
-  .devlog h4 { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); margin: 0 0 12px; }
-  .devlog ul { list-style: none; margin: 0; padding: 0; }
-  .devlog li { display: grid; grid-template-columns: 92px 1fr; gap: 12px; font-size: 14px; color: #c2c7cf; padding: 5px 0; }
-  .devlog li time { color: var(--faint); font-variant-numeric: tabular-nums; font-size: 13px; }
-  .devlog li b { color: var(--ink); font-weight: 600; }
-
-  footer { border-top: 1px solid var(--line); margin-top: 40px; padding: 36px 0 64px; font-size: 14px; color: var(--faint); }
-  footer a { color: var(--muted); }
-</style>
+<title>Dave Masceri</title>
+<meta name="description" content="Dave Masceri — structural engineer turned product manager who builds software for engineers. Projects, devlog, and resume." />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <nav class="topnav">
+    <div class="wrap-wide">
+      <a class="brand" href="index.html">Dave Masceri</a>
+      <div class="navlinks">
+        <a href="index.html" aria-current="page">About</a>
+        <a href="devlog.html">Projects</a>
+        <a href="resume.html">Resume</a>
+      </div>
+    </div>
+  </nav>
+
   <div class="wrap">
-    <header>
-      <p class="eyebrow">Dave Masceri &middot; Projects &amp; Devlog</p>
+    <header class="page">
+      <p class="eyebrow">Dave Masceri</p>
       <h1>I build things to understand them.</h1>
       <p class="lede">
         I'm a structural engineer by training who came to product management through building
-        software for other engineers. This is a running log of things I make &mdash; a
-        <strong>research code base</strong> from my doctoral work, a <strong>game</strong> built
-        to explore what was possible with Claude Code, and a <strong>market observation tool</strong>
-        built to sharpen intuition. Each started as a question I could only answer by building it.
+        software for other engineers. In my spare time I keep a
+        <a href="devlog.html">running log of things I make</a>.
       </p>
+      <div class="cta-row">
+        <a class="btn primary" href="devlog.html">See the devlog <span class="arrow">&rarr;</span></a>
+        <a class="btn" href="resume.html">Resume <span class="arrow">&rarr;</span></a>
+      </div>
       <p class="contact">
         <a href="https://github.com/dmasceri">github.com/dmasceri</a>
         <span class="dot">&middot;</span>
+        <a href="https://www.linkedin.com/in/dmasceri">LinkedIn</a>
+        <span class="dot">&middot;</span>
         <a href="mailto:d.masceri@gmail.com">d.masceri@gmail.com</a>
+        <span class="dot">&middot;</span>
+        <a href="https://calendly.com/dmasceri">Book a call</a>
       </p>
     </header>
 
-    <main>
-      <p class="section-label">Projects</p>
-      <div class="projects">
+    <section class="about-section">
+      <p class="section-label">A bit more</p>
+      <p>
+        I started out in applied structural engineering research, designing and evaluating bridges.
+        What hooked me was the feedback loop: instrument a real bridge, test it under load, then tune
+        a simulation until the model behaved like the structure standing in front of me. It became a
+        dissertation &mdash; and a software library that automated the whole build, tune, and simulate
+        loop engineers had been doing by hand.
+      </p>
+      <p>
+        Automating that loop for other engineers is what pulled me into product. I've been building
+        software ever since &mdash; through startups, mid-market B2B SaaS, IoT, and now enterprise
+        platforms &mdash; but the puzzle underneath never changed: take something people do by feel,
+        all heuristics and hard-won experience, break it down to its essence, and fit the pieces back
+        together into something simple enough to automate. And it turns out people and teams are the
+        same kind of puzzle &mdash; understand the parts, see how they fit, and alignment becomes
+        something you can actually solve for.
+      </p>
+    </section>
 
-        <!-- RAMPS -->
-        <article class="card">
-          <div class="card-top">
-            <h3><a href="https://github.com/dmasceri/ramps">RAMPS</a></h3>
-            <span class="status archive">Research archive</span>
-          </div>
-          <p class="tagline">Rapid Automated Modeling for the Performance of Structures</p>
-
-          <figure class="figure">
-            <img src="img/ramps-model.png" alt="3D finite-element model of a highway bridge generated by RAMPS" />
-            <figcaption>A complete 3D FE bridge model, generated parametrically through the Strand7 API.</figcaption>
-          </figure>
-
-          <p>
-            MATLAB software that builds and load-rates finite-element models of highway bridges by
-            driving the Strand7 solver through its API &mdash; generating the 3D model, running
-            simulated dead- and live-load tests, and computing rating factors with no manual modeling.
-          </p>
-          <p>
-            There's a second module that streamlines and automates the model-tuning step &mdash;
-            "Structural Identification" &mdash; by comparing the natural frequencies and mode shapes
-            of the model against a forced-vibration experiment. The software controls Strand7 to run
-            a modal analysis, then uses another non-linear optimization solver in MATLAB to update
-            model parameters &mdash; bearing stiffness, deck-to-girder composite action &mdash; so
-            the model behaves more like the real structure.
-          </p>
-
-          <figure class="figure">
-            <img src="img/ramps-mode-shape.png" alt="Analytical vs experimental mode-shape and MAC correlation" />
-            <figcaption>Parameter correlation: analytical vs. experimental mode shapes and MAC values.</figcaption>
-          </figure>
-
-          <p>
-            Third, there's an automated girder-sizing module &mdash; "design" without the human
-            intuition and heuristics &mdash; using AASHTO LRFD and ASD standards. There's a 2D FE
-            solver I built that runs the calcs, and a non-linear optimization algorithm that finds
-            the smallest girder by material volume that still meets the design specs.
-          </p>
-          <p>
-            Built during my doctoral research at Drexel and matured at Rutgers as the software
-            companion to the THMPR rapid-testing system (European patent; ASCE Pankow Award).
-          </p>
-          <p>
-            <b style="color:var(--ink)">Why I made it:</b> automate the model-building loop, automate
-            the model-tuning loop, automate the design-and-load-rating loop. All together, I was able
-            to say some impactful things about bridge design and the difference between reality and
-            simulation. In the end, it comes down to "all models are wrong, some are useful." It's
-            archived here as written &mdash; the interesting part is what it does, not how pretty it is.
-          </p>
-
-          <div class="tags">
-            <span class="tag">MATLAB</span>
-            <span class="tag">Strand7 API</span>
-            <span class="tag">FEA</span>
-            <span class="tag">AASHTO LRFD/ASD</span>
-            <span class="tag">Optimization</span>
-            <span class="tag">NBI</span>
-          </div>
-          <div class="links">
-            <a href="https://github.com/dmasceri/ramps">Repository <span class="arrow">&rarr;</span></a>
-            <a href="https://dmasceri.github.io/ramps/">Docs site <span class="arrow">&rarr;</span></a>
-          </div>
-
-          <div class="devlog">
-            <h4>Dev updates</h4>
-            <ul>
-              <li><time>Jul 2026</time><span>Published the archive with a full <b>documentation site</b> — pipeline walkthrough, the Strand7 API layer, meshing, and StID.</span></li>
-              <li><time>2016</time><span>Reached <b>Beta 1.1</b> at Rutgers: StID module + GUI front end, under version control.</span></li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- MORPHFLIGHT -->
-        <article class="card">
-          <div class="card-top">
-            <h3><a href="https://github.com/dmasceri/morphflight">MORPHFLIGHT</a></h3>
-            <span class="status">Playable prototype</span>
-          </div>
-          <p class="tagline">On-rails cave flyer with a morph-weapon core mechanic</p>
-
-          <figure class="figure">
-            <video src="img/morphflight-demo.mp4" poster="img/morphflight-poster.jpg"
-                   autoplay loop muted playsinline preload="metadata"
-                   style="display:block;width:100%;height:auto;background:#05060a;"></video>
-            <figcaption>Self-playing demo: morphing to match each wave across five environments.</figcaption>
-          </figure>
-
-          <p>
-            You auto-fly forward through cavernous environments, dodging and aiming with the stick
-            while reshaping your weapon's spread &mdash; orb, horizontal disk, vertical disk &mdash;
-            to match the enemy formation in front of you. Match the shape and the formation melts and
-            bonuses stack; mismatch it and you only chip away at enemies.
-          </p>
-          <p>
-            There's a handful of environments to play with that I had fun making after exploring
-            the morph-and-shoot mechanic. By the end of the prototype phase I started to investigate
-            syncing the procedurally-generated environment to music. More to come on that in the next
-            update.
-          </p>
-          <p>
-            <b style="color:var(--ink)">Side note:</b> play with an Xbox controller linked to your PC
-            over a cable or Bluetooth &mdash; it's way more fun.
-          </p>
-          <p>
-            <b style="color:var(--ink)">Why I made it:</b> initially, to explore the initial idea
-            &mdash; that a two-layer "aim <em>and</em> morph" gameplay loop could carry a shooter.
-            I'd be remiss if I didn't mention my wife reminded me while writing this blog post that
-            <em>Dead Space</em> used exactly this vertical/horizontal weapon morph in an FPS package.
-            Environments and enemies are the real test, and I'll need to hammer on those to see if
-            this can be really fun. This repo is the runnable vertical slice from that prototyping
-            phase. Did I prove out the idea?
-          </p>
-
-          <blockquote class="epigraph">
-            "All I know is my gut says <em>maybe</em>."
-            <cite>&mdash; <em>Futurama</em></cite>
-            <img src="img/futurama-maybe.gif" alt="Futurama — &lsquo;All I know is my gut says: maybe&rsquo;" style="display:block;margin-top:12px;width:100%;max-width:340px;border-radius:8px;" />
-          </blockquote>
-
-          <div class="tags">
-            <span class="tag">JavaScript</span>
-            <span class="tag">Three.js</span>
-            <span class="tag">WebGL</span>
-            <span class="tag">Vite</span>
-            <span class="tag">Gamepad API</span>
-          </div>
-          <div class="links">
-            <a href="https://github.com/dmasceri/morphflight">Repository <span class="arrow">&rarr;</span></a>
-            <a href="https://dmasceri.github.io/morphflight/">Play it <span class="arrow">&rarr;</span></a>
-          </div>
-
-          <div class="devlog">
-            <h4>Dev updates</h4>
-            <ul>
-              <li><time>Jul 2026</time><span>Deployed a <b>live playable build</b> to GitHub Pages, with a self-playing demo reel across all five environments.</span></li>
-              <li><time>Jun 2026</time><span>Vertical slice: neon-vector overhaul, <b>5 swappable environments</b>, asteroid pass, and a directional dash mechanic.</span></li>
-              <li><time>Next</time><span>Lean into <b>parametric environment generation</b>; stress-test whether the morph verb carries longer sessions.</span></li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- INTRADAY DASHBOARD -->
-        <article class="card">
-          <div class="card-top">
-            <h3><a href="https://github.com/dmasceri/intraday-regime-dashboard">Intraday Regime Dashboard</a></h3>
-            <span class="status wip">Working tool &middot; v2 in progress</span>
-          </div>
-          <p class="tagline">Read-only market regime &amp; intraday observation dashboard</p>
-
-          <figure class="figure">
-            <img src="img/intraday-regime.png" alt="Dashboard: regime context up top, the SPY/QQQ/IWM intraday grid, and the per-ticker why drawer" />
-            <figcaption>Regime context up top, the SPY / QQQ / IWM grid, and the per-ticker &ldquo;why&rdquo; drawer that spells out each gate.</figcaption>
-          </figure>
-
-          <p>
-            A calibration and observation tool for intraday equity metrics (SPY / QQQ / IWM) against
-            an Alpaca paper account and free FRED data &mdash; <strong>no orders, no positions.</strong>
-            An engine process owns all the data I/O and metric math and writes a permanent calibration
-            log to SQLite; a thin Streamlit UI just reads and renders, and always flags when the last
-            data pull happened.
-          </p>
-          <p>
-            <b style="color:var(--ink)">In development now:</b> the <em>action layer</em> &mdash; a
-            per-ticker entry trigger, an on-deck trade setup, and armed/triggered states that show how
-            it'll look when a tradable position is armed and ready. The shipped v1 is the read-only
-            observation grid; the action layer is what I'm building toward next.
-          </p>
-          <p>
-            <b style="color:var(--ink)">Why I made it:</b> I wanted to watch how regime signals behave
-            through a live session and build intuition before ever risking a dollar. Ships as a
-            two-process Docker stack. Next step? Training a trading algorithm.
-          </p>
-
-          <figure class="figure">
-            <img src="img/intraday-chart.png" alt="SPY 5-minute chart with VWAP, ATR band, opening range, and volume, ADX and RSI panes" />
-            <figcaption>The focused ticker&rsquo;s 5-min chart: VWAP, ATR&plusmn; band, and opening range, with volume, ADX, and RSI panes below.</figcaption>
-          </figure>
-
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Streamlit</span>
-            <span class="tag">SQLite</span>
-            <span class="tag">Docker</span>
-            <span class="tag">Alpaca &amp; FRED APIs</span>
-          </div>
-          <div class="links">
-            <a href="https://github.com/dmasceri/intraday-regime-dashboard">Repository <span class="arrow">&rarr;</span></a>
-          </div>
-
-          <div class="devlog">
-            <h4>Dev updates</h4>
-            <ul>
-              <li><time>In progress</time><span>Building the <b>action layer</b>: entry trigger, on-deck setup, and an <code>armed &rarr; triggered</code> state strip (auto-logs, still no orders).</span></li>
-              <li><time>Jul 2026</time><span>Shipped <b>v1</b>: engine/UI split around a SQLite store, trajectory-qualified regime bias, honest staleness flags.</span></li>
-            </ul>
-          </div>
-        </article>
-
+    <section class="about-section">
+      <p class="section-label">What I'm into</p>
+      <div class="interests">
+        <div class="interest has-photo" style="background-image:url('img/hobby-outdoors.jpg')"><h3>Outdoors</h3><p>Surfing and SCUBA &mdash; and traveling to sunny, sandy places to do more of both.</p></div>
+        <div class="interest"><h3>Games</h3><p>Poker and bridge at the table, <em>Civ VII</em> and <em>XCOM</em> on the screen, and an overloaded shelf of board games.</p></div>
+        <div class="interest"><h3>Reading</h3><p>Sci-fi like <em>The Expanse</em>, espionage (just finished <em>The Cartel</em>), and military history (<em>The Crusades</em>, <em>To Rule the Waves</em>).</p></div>
+        <div class="interest has-photo" style="background-image:url('img/hobby-kitchen.jpg')"><h3>In the kitchen</h3><p>Something spicy, usually from the wok, and testing the limits of what cauliflower can do.</p></div>
+        <div class="interest has-photo" style="background-image:url('img/hobby-family.jpg')"><h3>Family</h3><p>Two dogs who keep my step count up and our toy budget stretched.</p></div>
+        <div class="interest"><h3>Movies</h3><p><em>Lawrence of Arabia</em>, <em>Solaris</em> (the original), <em>Heat</em>, <em>Whiplash</em>. Classics from any age bring me back for a rewatch.</p></div>
       </div>
-    </main>
+    </section>
 
-    <footer>
+    <footer class="site">
       Built and maintained by Dave Masceri &middot;
-      <a href="https://github.com/dmasceri">github.com/dmasceri</a><br />
-      More projects &mdash; and more dev updates &mdash; land here as I finish them.
+      <a href="https://github.com/dmasceri">github.com/dmasceri</a>
+      <span class="dot">&middot;</span>
+      <a href="https://www.linkedin.com/in/dmasceri">LinkedIn</a>
     </footer>
   </div>
 </body>
