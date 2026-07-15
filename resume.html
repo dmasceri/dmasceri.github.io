@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Resume — David Masceri</title>
 <meta name="description" content="David Masceri, PhD — Senior Product Manager. Experience, skills, education, and recommendations." />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="favicon.png" sizes="64x64" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Resume — David Masceri" />
+<meta property="og:description" content="David Masceri, PhD — Senior Product Manager. Experience, skills, education, and recommendations." />
+<meta property="og:image" content="https://dmasceri.github.io/img/og-image.jpg" />
+<meta property="og:url" content="https://dmasceri.github.io/resume.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://dmasceri.github.io/img/og-image.jpg" />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -19,7 +31,7 @@
     </div>
   </nav>
 
-  <div class="wrap">
+  <div class="wrap-wide">
     <header class="page">
       <p class="eyebrow">Resume</p>
       <h1>David Masceri, PhD</h1>
@@ -32,7 +44,10 @@
       </div>
     </header>
 
-    <section class="resume-section">
+    <div class="page-layout">
+      <main>
+
+    <section class="resume-section" id="summary">
       <h2>Summary</h2>
       <p>
         Senior Product Manager with 8 years of experience shipping technical products across the B2B,
@@ -47,7 +62,7 @@
       </p>
     </section>
 
-    <section class="resume-section">
+    <section class="resume-section" id="experience">
       <h2>Experience</h2>
 
       <div class="role">
@@ -148,7 +163,7 @@
       </div>
     </section>
 
-    <section class="resume-section">
+    <section class="resume-section" id="skills">
       <h2>Core skills</h2>
       <div class="skill-groups">
         <div class="skill-group">
@@ -201,7 +216,7 @@
       </div>
     </section>
 
-    <section class="resume-section">
+    <section class="resume-section" id="education">
       <h2>Education</h2>
       <div class="role">
         <div class="role-top">
@@ -219,7 +234,7 @@
       </div>
     </section>
 
-    <section class="resume-section">
+    <section class="resume-section" id="awards">
       <h2>Patents &amp; awards</h2>
       <div class="role">
         <div class="role-top">
@@ -237,7 +252,7 @@
       </div>
     </section>
 
-    <section class="resume-section">
+    <section class="resume-section" id="references">
       <h2>What colleagues say</h2>
       <div class="quotes">
         <div class="quote">
@@ -252,6 +267,21 @@
       <p class="ref-note">Full letters of recommendation available on request.</p>
     </section>
 
+      </main>
+      <aside class="rail">
+        <p class="section-label">On this page</p>
+        <nav class="rail-nav">
+          <a href="#summary">Summary</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Core skills</a>
+          <a href="#education">Education</a>
+          <a href="#awards">Patents &amp; awards</a>
+          <a href="#references">Recommendations</a>
+        </nav>
+        <a class="btn primary" href="David_Masceri_Resume.pdf" download>Download PDF <span class="arrow">&darr;</span></a>
+      </aside>
+    </div>
+
     <footer class="site">
       Built and maintained by Dave Masceri &middot;
       <a href="https://github.com/dmasceri">github.com/dmasceri</a>
@@ -259,5 +289,24 @@
       <a href="https://www.linkedin.com/in/dmasceri">LinkedIn</a>
     </footer>
   </div>
+  <script>
+    (function () {
+      var links = Array.prototype.slice.call(document.querySelectorAll('.rail-nav a'));
+      var map = {};
+      links.forEach(function (a) {
+        var el = document.getElementById(a.getAttribute('href').slice(1));
+        if (el) map[el.id] = a;
+      });
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            links.forEach(function (l) { l.classList.remove('active'); });
+            if (map[e.target.id]) map[e.target.id].classList.add('active');
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+      Object.keys(map).forEach(function (id) { obs.observe(document.getElementById(id)); });
+    })();
+  </script>
 </body>
 </html>

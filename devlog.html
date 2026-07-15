@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Devlog — Dave Masceri</title>
 <meta name="description" content="A running log of things I build — a research code base, a game, and a market observation tool — with dev updates as I finish phases." />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="favicon.png" sizes="64x64" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Projects &amp; Devlog — Dave Masceri" />
+<meta property="og:description" content="A running log of things I build — a research code base, a game, and a market observation tool — with dev updates." />
+<meta property="og:image" content="https://dmasceri.github.io/img/og-image.jpg" />
+<meta property="og:url" content="https://dmasceri.github.io/devlog.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://dmasceri.github.io/img/og-image.jpg" />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -24,8 +36,7 @@
       <p class="eyebrow">Projects &amp; Devlog</p>
       <h1>Things I've Built</h1>
       <p class="lede">
-        A running log of what I make and why &mdash; a <strong>research code base</strong> from my
-        doctoral work, a <strong>game</strong>, and a <strong>market observation tool</strong>.
+        Some personal projects I've worked on live here in GitHub repos, pages, and playable demos.
         Each entry carries dev updates as I finish phases.
       </p>
     </header>
@@ -81,12 +92,11 @@
               simulated dead- and live-load tests, and computing rating factors with no manual modeling.
             </p>
             <p>
-              There's a second module that streamlines and automates the model-tuning step &mdash;
-              "Structural Identification" &mdash; by comparing the natural frequencies and mode shapes
-              of the model against a forced-vibration experiment. The software controls Strand7 to run
-              a modal analysis, then uses another non-linear optimization solver in MATLAB to update
-              model parameters &mdash; bearing stiffness, deck-to-girder composite action &mdash; so
-              the model behaves more like the real structure.
+              A second module that streamlines and automates the model-tuning step by comparing the
+              natural frequencies and mode shapes of the model against a forced-vibration experiment.
+              The software controls Strand7 to run a modal analysis, then uses another non-linear
+              optimization solver in MATLAB to update model parameters &mdash; bearing stiffness,
+              deck-to-girder composite action &mdash; so the model behaves more like the real structure.
             </p>
 
             <figure class="figure">
@@ -95,21 +105,24 @@
             </figure>
 
             <p>
-              Third, there's an automated girder-sizing module &mdash; "design" without the human
-              intuition and heuristics &mdash; using AASHTO LRFD and ASD standards. There's a 2D FE
-              solver I built that runs the calcs, and a non-linear optimization algorithm that finds
-              the smallest girder by material volume that still meets the design specs.
+              Finally, there's an automated girder-sizing module using AASHTO LRFD and ASD standards.
+              I don't use the term "design" because there's no human intuition, logistical constraints,
+              or other factors that go into what engineers actually build. I coded a 2D FE solver that
+              calculates demands, and a non-linear optimization algorithm finds the smallest girder by
+              material volume that still meets the design specs. This has been verified against both
+              hand calcs and real-life bridges.
             </p>
             <p>
-              Built during my doctoral research at Drexel and matured at Rutgers as the software
-              companion to the THMPR rapid-testing system (European patent; ASCE Pankow Award).
+              This was built during my doctoral research at Drexel and matured at Rutgers. The
+              model-building and updating engine was a companion to the THMPR rapid mobile testing
+              system that has a European patent and won the 2017 ASCE Pankow Award for Innovation.
             </p>
             <p>
               <b style="color:var(--ink)">Why I made it:</b> automate the model-building loop, automate
-              the model-tuning loop, automate the design-and-load-rating loop. All together, I was able
-              to say some impactful things about bridge design and the difference between reality and
-              simulation. In the end, it comes down to "all models are wrong, some are useful." It's
-              archived here as written &mdash; the interesting part is what it does, not how pretty it is.
+              the model-tuning loop, automate the design-and-load-rating loop. I was able to say some
+              impactful things about bridge design and the difference between reality and simulation
+              (<a href="https://researchdiscovery.drexel.edu/esploro/outputs/doctoral/Examination-of-bridge-performance-through-the/991014632301604721" rel="external">dissertation</a>). In the end, it comes down to "all models are
+              wrong, some are useful." It's archived here as written.
             </p>
 
             <div class="tags">
