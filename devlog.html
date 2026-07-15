@@ -46,17 +46,17 @@
         <p class="section-label">Projects</p>
         <ul>
           <li>
-            <a href="#ramps">
-              <span class="pi-title">RAMPS</span>
-              <span class="pi-tag">Automated FE bridge modeling &amp; load rating</span>
-              <span class="pi-label archive">Research archive</span>
-            </a>
-          </li>
-          <li>
             <a href="#morphflight">
               <span class="pi-title">MORPHFLIGHT</span>
               <span class="pi-tag">On-rails cave flyer, morph-weapon mechanic</span>
               <span class="pi-label">Playable prototype</span>
+            </a>
+          </li>
+          <li>
+            <a href="#ramps">
+              <span class="pi-title">RAMPS</span>
+              <span class="pi-tag">Automated FE bridge modeling &amp; load rating</span>
+              <span class="pi-label archive">Research archive</span>
             </a>
           </li>
           <li>
@@ -72,6 +72,75 @@
       <main class="devlog-body">
         <p class="section-label">Devlog</p>
         <div class="projects">
+
+          <!-- MORPHFLIGHT -->
+          <article class="card" id="morphflight">
+            <div class="card-top">
+              <h3><a href="https://github.com/dmasceri/morphflight">MORPHFLIGHT</a></h3>
+              <span class="status">Playable prototype</span>
+            </div>
+            <p class="tagline">On-rails cave flyer with a morph-weapon core mechanic</p>
+
+            <figure class="figure">
+              <video src="img/morphflight-demo.mp4" poster="img/morphflight-poster.jpg"
+                     autoplay loop muted playsinline preload="metadata"
+                     style="display:block;width:100%;height:auto;background:#05060a;"></video>
+              <figcaption>Self-playing demo: morphing to match each wave across five environments.</figcaption>
+            </figure>
+
+            <p>
+              You auto-fly forward through cavernous environments, dodging and aiming with the stick
+              while reshaping your weapon's spread &mdash; orb, horizontal disk, vertical disk &mdash;
+              to match the enemy formation in front of you. Match the shape and the formation melts and
+              bonuses stack; mismatch it and you only chip away at enemies.
+            </p>
+            <p>
+              There's a handful of environments to play with that I had fun making after exploring
+              the morph-and-shoot mechanic. By the end of the prototype phase I started to investigate
+              syncing the procedurally-generated environment to music. More to come on that in the next
+              update.
+            </p>
+            <p>
+              <b style="color:var(--ink)">Side note:</b> play with an Xbox controller linked to your PC
+              over a cable or Bluetooth, it's way more fun.
+            </p>
+            <p>
+              <b style="color:var(--ink)">Why I made it:</b> initially, to explore the initial idea
+              &mdash; that a two-layer "aim <em>and</em> morph" gameplay loop could carry a shooter.
+              I'd be remiss if I didn't mention my wife reminded me while writing this blog post that
+              <em>Dead Space</em> used exactly this vertical/horizontal weapon morph in an FPS package.
+              Environments and enemies are the real test, and I'll need to hammer on those to see if
+              this can be really fun. This repo is the runnable vertical slice from that prototyping
+              phase. Did I prove out the idea?
+            </p>
+
+            <blockquote class="epigraph">
+              "All I know is my gut says <em>maybe</em>."
+              <cite>&mdash; <em>Futurama</em></cite>
+              <img src="img/futurama-maybe.gif" alt="Futurama — &lsquo;All I know is my gut says: maybe&rsquo;" style="display:block;margin-top:12px;width:100%;max-width:340px;border-radius:8px;" />
+            </blockquote>
+
+            <div class="tags">
+              <span class="tag">JavaScript</span>
+              <span class="tag">Three.js</span>
+              <span class="tag">WebGL</span>
+              <span class="tag">Vite</span>
+              <span class="tag">Gamepad API</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/dmasceri/morphflight">Repository <span class="arrow">&rarr;</span></a>
+              <a href="https://dmasceri.github.io/morphflight/">Play it <span class="arrow">&rarr;</span></a>
+            </div>
+
+            <div class="devlog">
+              <h4>Dev updates</h4>
+              <ul>
+                <li><time>Jul 2026</time><span>Deployed a <b>live playable build</b> to GitHub Pages, with a self-playing demo reel across all five environments.</span></li>
+                <li><time>Jun 2026</time><span>Vertical slice: neon-vector overhaul, <b>5 swappable environments</b>, asteroid pass, and a directional dash mechanic.</span></li>
+                <li><time>Next</time><span>Lean into <b>parametric environment generation</b>; stress-test whether the morph verb carries longer sessions.</span></li>
+              </ul>
+            </div>
+          </article>
 
           <!-- RAMPS -->
           <article class="card" id="ramps">
@@ -147,76 +216,7 @@
             </div>
           </article>
 
-          <!-- MORPHFLIGHT -->
-          <article class="card" id="morphflight">
-            <div class="card-top">
-              <h3><a href="https://github.com/dmasceri/morphflight">MORPHFLIGHT</a></h3>
-              <span class="status">Playable prototype</span>
-            </div>
-            <p class="tagline">On-rails cave flyer with a morph-weapon core mechanic</p>
-
-            <figure class="figure">
-              <video src="img/morphflight-demo.mp4" poster="img/morphflight-poster.jpg"
-                     autoplay loop muted playsinline preload="metadata"
-                     style="display:block;width:100%;height:auto;background:#05060a;"></video>
-              <figcaption>Self-playing demo: morphing to match each wave across five environments.</figcaption>
-            </figure>
-
-            <p>
-              You auto-fly forward through cavernous environments, dodging and aiming with the stick
-              while reshaping your weapon's spread &mdash; orb, horizontal disk, vertical disk &mdash;
-              to match the enemy formation in front of you. Match the shape and the formation melts and
-              bonuses stack; mismatch it and you only chip away at enemies.
-            </p>
-            <p>
-              There's a handful of environments to play with that I had fun making after exploring
-              the morph-and-shoot mechanic. By the end of the prototype phase I started to investigate
-              syncing the procedurally-generated environment to music. More to come on that in the next
-              update.
-            </p>
-            <p>
-              <b style="color:var(--ink)">Side note:</b> play with an Xbox controller linked to your PC
-              over a cable or Bluetooth &mdash; it's way more fun.
-            </p>
-            <p>
-              <b style="color:var(--ink)">Why I made it:</b> initially, to explore the initial idea
-              &mdash; that a two-layer "aim <em>and</em> morph" gameplay loop could carry a shooter.
-              I'd be remiss if I didn't mention my wife reminded me while writing this blog post that
-              <em>Dead Space</em> used exactly this vertical/horizontal weapon morph in an FPS package.
-              Environments and enemies are the real test, and I'll need to hammer on those to see if
-              this can be really fun. This repo is the runnable vertical slice from that prototyping
-              phase. Did I prove out the idea?
-            </p>
-
-            <blockquote class="epigraph">
-              "All I know is my gut says <em>maybe</em>."
-              <cite>&mdash; <em>Futurama</em></cite>
-              <img src="img/futurama-maybe.gif" alt="Futurama — &lsquo;All I know is my gut says: maybe&rsquo;" style="display:block;margin-top:12px;width:100%;max-width:340px;border-radius:8px;" />
-            </blockquote>
-
-            <div class="tags">
-              <span class="tag">JavaScript</span>
-              <span class="tag">Three.js</span>
-              <span class="tag">WebGL</span>
-              <span class="tag">Vite</span>
-              <span class="tag">Gamepad API</span>
-            </div>
-            <div class="links">
-              <a href="https://github.com/dmasceri/morphflight">Repository <span class="arrow">&rarr;</span></a>
-              <a href="https://dmasceri.github.io/morphflight/">Play it <span class="arrow">&rarr;</span></a>
-            </div>
-
-            <div class="devlog">
-              <h4>Dev updates</h4>
-              <ul>
-                <li><time>Jul 2026</time><span>Deployed a <b>live playable build</b> to GitHub Pages, with a self-playing demo reel across all five environments.</span></li>
-                <li><time>Jun 2026</time><span>Vertical slice: neon-vector overhaul, <b>5 swappable environments</b>, asteroid pass, and a directional dash mechanic.</span></li>
-                <li><time>Next</time><span>Lean into <b>parametric environment generation</b>; stress-test whether the morph verb carries longer sessions.</span></li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- INTRADAY DASHBOARD -->
+<!-- INTRADAY DASHBOARD -->
           <article class="card" id="intraday">
             <div class="card-top">
               <h3><a href="https://github.com/dmasceri/intraday-regime-dashboard">Intraday Regime Dashboard</a></h3>
@@ -230,22 +230,22 @@
             </figure>
 
             <p>
-              A calibration and observation tool for intraday equity metrics (SPY / QQQ / IWM) against
-              an Alpaca paper account and free FRED data &mdash; <strong>no orders, no positions.</strong>
-              An engine process owns all the data I/O and metric math and writes a permanent calibration
-              log to SQLite; a thin Streamlit UI just reads and renders, and always flags when the last
-              data pull happened.
+              A calibration and observation tool for intraday equity index metrics (SPY / QQQ / IWM)
+              against an Alpaca paper account and free FRED data with no orders or positions. An engine
+              process owns all the data I/O and metric math and writes a permanent calibration log to
+              SQLite; a thin Streamlit UI just reads and renders and always flags when the last data
+              pull happened.
             </p>
             <p>
-              <b style="color:var(--ink)">In development now:</b> the <em>action layer</em> &mdash; a
+              <b style="color:var(--ink)">In development now:</b> the <em>action layer</em>, i.e. a
               per-ticker entry trigger, an on-deck trade setup, and armed/triggered states that show how
-              it'll look when a tradable position is armed and ready. The shipped v1 is the read-only
-              observation grid; the action layer is what I'm building toward next.
+              it'll look when a tradable position is ready or executed. The shipped v1 is the read-only
+              observation grid; the action layer is what I'm building next.
             </p>
             <p>
               <b style="color:var(--ink)">Why I made it:</b> I wanted to watch how regime signals behave
-              through a live session and build intuition before ever risking a dollar. Ships as a
-              two-process Docker stack. Next step? Training a trading algorithm.
+              through a live session and build intuition before risking real dollars. Also to be able to
+              learn about Docker and ship a two-stage Docker stack. Next step? Training a trading algorithm.
             </p>
 
             <figure class="figure">
