@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Devlog — Dave Masceri</title>
-<meta name="description" content="A running log of things I build — a research code base, a game, and a market observation tool — with dev updates as I finish phases." />
+<meta name="description" content="A running log of things I build — an agentic ops prototype, a research code base, a game, and a market observation tool — with dev updates as I finish phases." />
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="favicon.png" sizes="64x64" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Projects &amp; Devlog — Dave Masceri" />
-<meta property="og:description" content="A running log of things I build — a research code base, a game, and a market observation tool — with dev updates." />
+<meta property="og:description" content="A running log of things I build — an agentic ops prototype, a research code base, a game, and a market observation tool — with dev updates." />
 <meta property="og:image" content="https://dmasceri.github.io/img/og-image.jpg" />
 <meta property="og:url" content="https://dmasceri.github.io/devlog.html" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -46,6 +46,13 @@
         <p class="section-label">Projects</p>
         <ul>
           <li>
+            <a href="#daily-close">
+              <span class="pi-title">Daily Close Agent</span>
+              <span class="pi-tag">Human-in-the-loop agentic retail cash close</span>
+              <span class="pi-label wip">Live demo</span>
+            </a>
+          </li>
+          <li>
             <a href="#morphflight">
               <span class="pi-title">MORPHFLIGHT</span>
               <span class="pi-tag">On-rails cave flyer, morph-weapon mechanic</span>
@@ -72,6 +79,71 @@
       <main class="devlog-body">
         <p class="section-label">Devlog</p>
         <div class="projects">
+
+          <!-- DAILY CLOSE AGENT -->
+          <article class="card" id="daily-close">
+            <div class="card-top">
+              <h3><a href="https://github.com/dmasceri/daily-close-agent">Daily Close Agent</a></h3>
+              <span class="status wip">Working prototype &middot; live demo</span>
+            </div>
+            <p class="tagline">A human-in-the-loop agentic take on the retail end-of-day cash close</p>
+
+            <figure class="figure">
+              <img src="img/daily-close-agent.jpg" alt="Daily Close Agent operator dashboard: variance cards ranked needs-a-human-first, with a detail panel showing the evidence, the agents' read, and the approve, edit, or escalate gate" />
+              <figcaption>The operator dashboard: variance cards for the scan, and a detail panel with the evidence, the agents&rsquo; read, and the approve / edit / escalate gate.</figcaption>
+            </figure>
+
+            <p>
+              A working prototype of an agentic end-of-day cash close for a simulated retail store
+              &mdash; a reconciliation problem I owned for years at enterprise scale. It has three layers
+              with a hard boundary between them: deterministic math that finds the variances, a small
+              fleet of role-scoped agents that classify and investigate them, and a human approval gate
+              where an operator approves, edits, or escalates every item before anything is filed.
+            </p>
+            <p>
+              The detector is deliberately cause-blind. It will tell you a register is short by fifty
+              dollars with a void rate twice the store average, but naming the cause is the agent&rsquo;s
+              job and approving the fix is the human&rsquo;s. Three agents each carry a written job
+              description committed to the repo: a <b>Classifier</b> (Opus 5) that names the likely cause
+              from the evidence, an <b>Investigator</b> (Opus 5) that pulls the raw transactions and
+              builds the case, and a <b>Summarizer</b> (Sonnet 5) that writes the end-of-day brief.
+            </p>
+            <p>
+              <b style="color:var(--ink)">The moment it clicked:</b> on one register the Classifier
+              called a suspicious void pattern with high confidence. The Investigator, working from the
+              actual transactions instead of the summary, disagreed &mdash; the voids overshot the short
+              by more than 2x, no subset reconciled, and they were spread across the whole trading day. It
+              downgraded the item to unresolved and recommended a recount first. I kept that disagreement
+              in the product, because a second agent catching the first one&rsquo;s overcall, with a human
+              on top of both, is the whole point.
+            </p>
+            <p>
+              <b style="color:var(--ink)">Why I made it:</b> to see what a modern, agentic treatment of a
+              problem I know cold would actually look like when built, and to draw a clear line between
+              what the agents decide and what a person does. The store is fully simulated, so I can break
+              it on command in a demo, and nothing reflects any employer&rsquo;s real systems or thresholds.
+            </p>
+
+            <div class="tags">
+              <span class="tag">TypeScript</span>
+              <span class="tag">Claude (Opus 5 / Sonnet 5)</span>
+              <span class="tag">Next.js</span>
+              <span class="tag">v0</span>
+              <span class="tag">Node</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/dmasceri/daily-close-agent">Repository <span class="arrow">&rarr;</span></a>
+              <a href="https://dmasceri.github.io/daily-close-agent/">See it live <span class="arrow">&rarr;</span></a>
+            </div>
+
+            <div class="devlog">
+              <h4>Dev updates</h4>
+              <ul>
+                <li><time>Aug 2026</time><span>Deployed the <b>live operator dashboard</b> to GitHub Pages, running on real captured Opus 5 / Sonnet 5 output.</span></li>
+                <li><time>Jul 2026</time><span>Built the full loop: deterministic detection, a <b>three-agent fleet</b>, and a human approval gate that counts every correction.</span></li>
+              </ul>
+            </div>
+          </article>
 
           <!-- MORPHFLIGHT -->
           <article class="card" id="morphflight">
