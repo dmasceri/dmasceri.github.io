@@ -105,15 +105,19 @@
               dollars with a void rate twice the store average, but naming the cause is the agent&rsquo;s
               job and approving the fix is the human&rsquo;s. Three agents each carry a written job
               description committed to the repo: a <b>Classifier</b> (Opus 5) that names the likely cause
-              from the evidence, an <b>Investigator</b> (Opus 5) that pulls the raw transactions and
-              builds the case, and a <b>Summarizer</b> (Sonnet 5) that writes the end-of-day brief.
+              from the evidence surfaced by the detector, an <b>Investigator</b> (Opus 5) that pulls the
+              raw transactions, builds a case, and pushes back on the Classifier when the larger body of
+              evidence does not agree, and a <b>Summarizer</b> (Sonnet 5) that writes the end-of-day brief.
             </p>
             <p>
-              <b style="color:var(--ink)">The moment it clicked:</b> on one register the Classifier
-              called a suspicious void pattern with high confidence. The Investigator, working from the
-              actual transactions instead of the summary, disagreed &mdash; the voids overshot the short
-              by more than 2x, no subset reconciled, and they were spread across the whole trading day. It
-              downgraded the item to unresolved and recommended a recount first. I kept that disagreement
+              <b style="color:var(--ink)">The moment it clicked:</b> the Classifier reasons from the
+              compact evidence the detector surfaces, while the Investigator goes underneath that summary
+              to the full transaction record, including entries the Classifier never saw. On one register
+              the Classifier called a suspicious void pattern with high confidence. Working from those raw
+              transactions instead of the summary, the Investigator disagreed &mdash; the voids overshot
+              the short by more than 2x, no subset reconciled, and they were spread across the whole
+              trading day. It downgraded the item to unresolved and recommended a recount first. I kept
+              that disagreement
               in the product, because a second agent catching the first one&rsquo;s overcall, with a human
               on top of both, is the whole point.
             </p>
