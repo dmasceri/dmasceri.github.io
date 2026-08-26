@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Devlog — Dave Masceri</title>
+<meta name="description" content="A running log of things I build — an agentic ops prototype, a market observation tool, a research code base, and a game — with dev updates as I finish phases." />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="favicon.png" sizes="64x64" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Projects &amp; Devlog — Dave Masceri" />
+<meta property="og:description" content="A running log of things I build — an agentic ops prototype, a market observation tool, a research code base, and a game — with dev updates." />
+<meta property="og:image" content="https://dmasceri.github.io/img/og-image.jpg" />
+<meta property="og:url" content="https://dmasceri.github.io/projects.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://dmasceri.github.io/img/og-image.jpg" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="topnav">
+    <div class="wrap-wide">
+      <a class="brand" href="index.html">Dave Masceri</a>
+      <div class="navlinks">
+        <a href="index.html">About</a>
+        <a href="projects.html" aria-current="page">Projects</a>
+        <a href="resume.html">Resume</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap-wide">
+    <header class="page">
+      <p class="eyebrow">Projects &amp; Devlog</p>
+      <h1>Things I've Built</h1>
+      <p class="lede">
+        Some personal projects I've worked on live here in GitHub repos, pages, and playable demos.
+        Each entry carries dev updates as I finish phases.
+      </p>
+    </header>
+
+    <div class="devlog-layout">
+      <aside class="proj-index">
+        <p class="section-label">Projects</p>
+        <ul>
+          <li>
+            <a href="#daily-close">
+              <span class="pi-title">Daily Close Agent</span>
+              <span class="pi-tag">Human-in-the-loop agentic retail cash close</span>
+              <span class="pi-label wip">Live demo</span>
+            </a>
+          </li>
+          <li>
+            <a href="#intraday">
+              <span class="pi-title">Intraday Regime Dashboard</span>
+              <span class="pi-tag">Market regime &amp; intraday observation</span>
+              <span class="pi-label wip">Working tool</span>
+            </a>
+          </li>
+          <li>
+            <a href="#ramps">
+              <span class="pi-title">RAMPS</span>
+              <span class="pi-tag">Automated FE bridge modeling &amp; load rating</span>
+              <span class="pi-label archive">Research archive</span>
+            </a>
+          </li>
+          <li>
+            <a href="#morphflight">
+              <span class="pi-title">MORPHFLIGHT</span>
+              <span class="pi-tag">On-rails cave flyer, morph-weapon mechanic</span>
+              <span class="pi-label">Playable prototype</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <main class="devlog-body">
+        <p class="section-label">Devlog</p>
+        <div class="projects">
+
+          <!-- DAILY CLOSE AGENT -->
+          <article class="card" id="daily-close">
+            <div class="card-top">
+              <h3><a href="https://github.com/dmasceri/daily-close-agent">Daily Close Agent</a></h3>
+              <span class="status wip">Working prototype &middot; live demo</span>
+            </div>
+            <p class="tagline">A human-in-the-loop agentic take on the retail end-of-day cash close</p>
+
+            <figure class="figure">
+              <img src="img/daily-close-agent.jpg" alt="Daily Close Agent operator dashboard: variance cards ranked needs-a-human-first, with a detail panel showing the evidence, the agents' read, and the approve, edit, or escalate gate" />
+              <figcaption>The operator dashboard: variance cards for the scan, and a detail panel with the evidence, the agents&rsquo; read, and the approve / edit / escalate gate.</figcaption>
+            </figure>
+
+            <p>
+              A working prototype of an agentic end-of-day cash close for a simulated retail store
+              &mdash; a reconciliation problem I owned for years at enterprise scale. It has three layers
+              with a hard boundary between them: deterministic math that finds the variances, a small
+              fleet of role-scoped agents that classify and investigate them, and a human approval gate
+              where an operator approves, edits, or escalates every item before anything is filed.
+            </p>
+            <p>
+              The detector is deliberately cause-blind. It will tell you a register is short by fifty
+              dollars with a void rate twice the store average, but naming the cause is the agent&rsquo;s
+              job and approving the fix is the human&rsquo;s. Three agents each carry a written job
+              description committed to the repo: a <b>Classifier</b> (Opus 5) that names the likely cause
+              from the evidence surfaced by the detector, an <b>Investigator</b> (Opus 5) that pulls the
+              raw transactions, builds a case, and pushes back on the Classifier when the larger body of
+              evidence does not agree, and a <b>Summarizer</b> (Sonnet 5) that writes the end-of-day brief.
+            </p>
+            <p>
+              <b style="color:var(--ink)">The moment it clicked:</b> the Classifier reasons from the
+              compact evidence the detector surfaces, while the Investigator goes underneath that summary
+              to the full transaction record, including entries the Classifier never saw. On one register
+              the Classifier called a suspicious void pattern with high confidence. Working from those raw
+              transactions instead of the summary, the Investigator disagreed &mdash; the voids overshot
+              the short by more than 2x, no subset reconciled, and they were spread across the whole
+              trading day. It downgraded the item to unresolved and recommended a recount first. I kept
+              that disagreement
+              in the product, because a second agent catching the first one&rsquo;s overcall, with a human
+              on top of both, is the whole point.
+            </p>
+            <p>
+              <b style="color:var(--ink)">Why I made it:</b> to see what a modern, agentic treatment of a
+              problem I know cold would actually look like when built, and to draw a clear line between
+              what the agents decide and what a person does. The store is fully simulated, so I can break
+              it on command in a demo, and nothing reflects any employer&rsquo;s real systems or thresholds.
+            </p>
+            <p>
+              <b style="color:var(--ink)">Built with v0:</b> the operator dashboard was my first real run
+              at an AI UX tool. I scaffolded it in v0 from a data contract and a few design principles, then
+              wired it to the real backend with Claude Code. v0 was a genuine accelerant for the shell and
+              the interaction design, and it even encoded &ldquo;severity is a signal, not a verdict&rdquo;
+              without being told twice. What it could not do was own the domain: it invented its own data
+              shapes and a numeric confidence scale, and the judgment about the data model and what the
+              interface should teach the operator still had to come from someone who knows the problem.
+            </p>
+
+            <div class="tags">
+              <span class="tag">TypeScript</span>
+              <span class="tag">Claude (Opus 5 / Sonnet 5)</span>
+              <span class="tag">Next.js</span>
+              <span class="tag">v0</span>
+              <span class="tag">Node</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/dmasceri/daily-close-agent">Repository <span class="arrow">&rarr;</span></a>
+              <a href="https://dmasceri.github.io/daily-close-agent/">See it live <span class="arrow">&rarr;</span></a>
+            </div>
+
+            <div class="devlog">
+              <h4>Dev updates</h4>
+              <ul>
+                <li><time>Aug 2026</time><span>Deployed the <b>live operator dashboard</b> to GitHub Pages, running on real captured Opus 5 / Sonnet 5 output.</span></li>
+                <li><time>Jul 2026</time><span>Built the full loop: deterministic detection, a <b>three-agent fleet</b>, and a human approval gate that counts every correction.</span></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- INTRADAY DASHBOARD -->
+          <article class="card" id="intraday">
+            <div class="card-top">
+              <h3><a href="https://github.com/dmasceri/intraday-regime-dashboard">Intraday Regime Dashboard</a></h3>
+              <span class="status wip">Working tool &middot; v2 in progress</span>
+            </div>
+            <p class="tagline">Read-only market regime &amp; intraday observation dashboard</p>
+
+            <figure class="figure">
+              <img src="img/intraday-regime.png" alt="Dashboard: regime context up top, the SPY/QQQ/IWM intraday grid, and the per-ticker why drawer" />
+              <figcaption>Regime context up top, the SPY / QQQ / IWM grid, and the per-ticker &ldquo;why&rdquo; drawer that spells out each gate.</figcaption>
+            </figure>
+
+            <p>
+              A calibration and observation tool for intraday equity index metrics (SPY / QQQ / IWM)
+              against an Alpaca paper account and free FRED data with no orders or positions. An engine
+              process owns all the data I/O and metric math and writes a permanent calibration log to
+              SQLite; a thin Streamlit UI just reads and renders and always flags when the last data
+              pull happened.
+            </p>
+            <p>
+              <b style="color:var(--ink)">Read-only by design:</b> the tool observes and calibrates, and it
+              never places an order. The engine/UI split keeps all data and math in one auditable place, and
+              the interface always shows when the data was last pulled, so no decision rides on a stale
+              number. Deciding what a tool should deliberately not do is its own product call.
+            </p>
+            <p>
+              <b style="color:var(--ink)">In development now:</b> the <em>action layer</em>, i.e. a
+              per-ticker entry trigger, an on-deck trade setup, and armed/triggered states that show how
+              it'll look when a tradable position is ready or executed. The shipped v1 is the read-only
+              observation grid; the action layer is what I'm building next.
+            </p>
+            <p>
+              <b style="color:var(--ink)">Why I made it:</b> I wanted to watch how regime signals behave
+              through a live session and build intuition before risking real dollars. Also to be able to
+              learn about Docker and ship a two-stage Docker stack. Next step? Training a trading algorithm.
+            </p>
+
+            <figure class="figure">
+              <img src="img/intraday-chart.png" alt="SPY 5-minute chart with VWAP, ATR band, opening range, and volume, ADX and RSI panes" />
+              <figcaption>The focused ticker&rsquo;s 5-min chart: VWAP, ATR&plusmn; band, and opening range, with volume, ADX, and RSI panes below.</figcaption>
+            </figure>
+
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">SQLite</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Alpaca &amp; FRED APIs</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/dmasceri/intraday-regime-dashboard">Repository <span class="arrow">&rarr;</span></a>
+            </div>
+
+            <div class="devlog">
+              <h4>Dev updates</h4>
+              <ul>
+                <li><time>In progress</time><span>Building the <b>action layer</b>: entry trigger, on-deck setup, and an <code>armed &rarr; triggered</code> state strip (auto-logs, still no orders).</span></li>
+                <li><time>Jul 2026</time><span>Shipped <b>v1</b>: engine/UI split around a SQLite store, trajectory-qualified regime bias, honest staleness flags.</span></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- RAMPS -->
+          <article class="card" id="ramps">
+            <div class="card-top">
+              <h3><a href="https://github.com/dmasceri/ramps">RAMPS</a></h3>
+              <span class="status archive">Research archive</span>
+            </div>
+            <p class="tagline">Automated finite-element modeling, tuning, and load rating for highway bridges</p>
+
+            <p>
+              <b style="color:var(--ink)">Part of award-winning research:</b> RAMPS (Rapid Automated Modeling
+              for the Performance of Structures) was the modeling and model-updating companion to THMPR, a
+              rapid mobile bridge-testing system that holds a European patent and won the 2017 ASCE Pankow
+              Award for Innovation. The findings behind it are in my published
+              <a href="https://researchdiscovery.drexel.edu/esploro/outputs/doctoral/Examination-of-bridge-performance-through-the/991014632301604721" rel="external">doctoral dissertation</a>,
+              built at Drexel and matured at Rutgers.
+            </p>
+
+            <figure class="figure">
+              <img src="img/ramps-model.png" alt="3D finite-element model of a highway bridge generated by RAMPS" />
+              <figcaption>A complete 3D FE bridge model, generated parametrically through the Strand7 API.</figcaption>
+            </figure>
+
+            <p>
+              MATLAB software that builds and load-rates finite-element models of highway bridges by
+              driving the Strand7 solver through its API &mdash; generating the 3D model, running
+              simulated dead- and live-load tests, and computing rating factors with no manual modeling.
+            </p>
+            <p>
+              A second module that streamlines and automates the model-tuning step by comparing the
+              natural frequencies and mode shapes of the model against a forced-vibration experiment.
+              The software controls Strand7 to run a modal analysis, then uses another non-linear
+              optimization solver in MATLAB to update model parameters &mdash; bearing stiffness,
+              deck-to-girder composite action &mdash; so the model behaves more like the real structure.
+            </p>
+
+            <figure class="figure">
+              <img src="img/ramps-mode-shape.png" alt="Analytical vs experimental mode-shape and MAC correlation" />
+              <figcaption>Parameter correlation: analytical vs. experimental mode shapes and MAC values.</figcaption>
+            </figure>
+
+            <p>
+              Finally, there's an automated girder-sizing module using AASHTO LRFD and ASD standards.
+              I don't use the term "design" because there's no human intuition, logistical constraints,
+              or other factors that go into what engineers actually build. I coded a 2D FE solver that
+              calculates demands, and a non-linear optimization algorithm finds the smallest girder by
+              material volume that still meets the design specs. This has been verified against both
+              hand calcs and real-life bridges.
+            </p>
+            <p>
+              <b style="color:var(--ink)">Why I made it:</b> automate the model-building loop, automate
+              the model-tuning loop, automate the design-and-load-rating loop. I was able to say some
+              impactful things about bridge design and the difference between reality and simulation. In
+              the end, it comes down to "all models are wrong, some are useful." It's archived here as written.
+            </p>
+
+            <div class="tags">
+              <span class="tag">MATLAB</span>
+              <span class="tag">Strand7 API</span>
+              <span class="tag">FEA</span>
+              <span class="tag">AASHTO LRFD/ASD</span>
+              <span class="tag">Optimization</span>
+              <span class="tag">NBI</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/dmasceri/ramps">Repository <span class="arrow">&rarr;</span></a>
+              <a href="https://dmasceri.github.io/ramps/">Docs site <span class="arrow">&rarr;</span></a>
+            </div>
+
+            <div class="devlog">
+              <h4>Dev updates</h4>
+              <ul>
+                <li><time>Jul 2026</time><span>Published the archive with a full <b>documentation site</b> — pipeline walkthrough, the Strand7 API layer, meshing, and StID.</span></li>
+                <li><time>2016</time><span>Reached <b>Beta 1.1</b> at Rutgers: StID module + GUI front end, under version control.</span></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- MORPHFLIGHT -->
+          <article class="card" id="morphflight">
+            <div class="card-top">
+              <h3><a href="https://github.com/dmasceri/morphflight">MORPHFLIGHT</a></h3>
+              <span class="status">Playable prototype</span>
+            </div>
+            <p class="tagline">On-rails cave flyer with a morph-weapon core mechanic</p>
+
+            <figure class="figure">
+              <video src="img/morphflight-demo.mp4" poster="img/morphflight-poster.jpg"
+                     autoplay loop muted playsinline preload="metadata"
+                     style="display:block;width:100%;height:auto;background:#05060a;"></video>
+              <figcaption>Self-playing demo: morphing to match each wave across five environments.</figcaption>
+            </figure>
+
+            <p>
+              You auto-fly forward through cavernous environments, dodging and aiming with the stick
+              while reshaping your weapon's spread &mdash; orb, horizontal disk, vertical disk &mdash;
+              to match the enemy formation in front of you. Match the shape and the formation melts and
+              bonuses stack; mismatch it and you only chip away at enemies.
+            </p>
+            <p>
+              There's a handful of environments to play with that I had fun making after exploring
+              the morph-and-shoot mechanic. By the end of the prototype phase I started to investigate
+              syncing the procedurally-generated environment to music. More to come on that in the next
+              update.
+            </p>
+            <p>
+              <b style="color:var(--ink)">Side note:</b> play with an Xbox controller linked to your PC
+              over a cable or Bluetooth, it's way more fun.
+            </p>
+            <p>
+              <b style="color:var(--ink)">Why I made it:</b> initially, to explore the initial idea
+              &mdash; that a two-layer "aim <em>and</em> morph" gameplay loop could carry a shooter.
+              I'd be remiss if I didn't mention my wife reminded me while writing this blog post that
+              <em>Dead Space</em> used exactly this vertical/horizontal weapon morph in an FPS package.
+              Environments and enemies are the real test, and I'll need to hammer on those to see if
+              this can be really fun. This repo is the runnable vertical slice from that prototyping
+              phase. Did I prove out the idea?
+            </p>
+
+            <blockquote class="epigraph">
+              "All I know is my gut says <em>maybe</em>."
+              <cite>&mdash; <em>Futurama</em></cite>
+              <img src="img/futurama-maybe.gif" alt="Futurama — &lsquo;All I know is my gut says: maybe&rsquo;" style="display:block;margin-top:12px;width:100%;max-width:340px;border-radius:8px;" />
+            </blockquote>
+
+            <div class="tags">
+              <span class="tag">JavaScript</span>
+              <span class="tag">Three.js</span>
+              <span class="tag">WebGL</span>
+              <span class="tag">Vite</span>
+              <span class="tag">Gamepad API</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/dmasceri/morphflight">Repository <span class="arrow">&rarr;</span></a>
+              <a href="https://dmasceri.github.io/morphflight/">Play it <span class="arrow">&rarr;</span></a>
+            </div>
+
+            <div class="devlog">
+              <h4>Dev updates</h4>
+              <ul>
+                <li><time>Jul 2026</time><span>Deployed a <b>live playable build</b> to GitHub Pages, with a self-playing demo reel across all five environments.</span></li>
+                <li><time>Jun 2026</time><span>Vertical slice: neon-vector overhaul, <b>5 swappable environments</b>, asteroid pass, and a directional dash mechanic.</span></li>
+                <li><time>Next</time><span>Lean into <b>parametric environment generation</b>; stress-test whether the morph verb carries longer sessions.</span></li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </main>
+    </div>
+
+    <footer class="site">
+      Built and maintained by Dave Masceri &middot;
+      <a href="https://github.com/dmasceri">github.com/dmasceri</a>
+      <span class="dot">&middot;</span>
+      <a href="https://www.linkedin.com/in/dmasceri">LinkedIn</a><br />
+      More projects &mdash; and more dev updates &mdash; land here as I finish them.
+    </footer>
+  </div>
+</body>
+</html>
