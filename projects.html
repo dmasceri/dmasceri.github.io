@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Projects — Dave Masceri</title>
-<meta name="description" content="A running log of things I build — an agentic ops prototype, a market observation tool, a research code base, and a game — with dev updates as I finish phases." />
+<meta name="description" content="A running log of things I build — an agentic ops prototype, a market observation tool, a research code base, a game, and one idea that didn't pan out — with dev updates as I finish phases." />
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="favicon.png" sizes="64x64" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Projects &amp; Devlog — Dave Masceri" />
-<meta property="og:description" content="A running log of things I build — an agentic ops prototype, a market observation tool, a research code base, and a game — with dev updates." />
+<meta property="og:description" content="A running log of things I build — an agentic ops prototype, a market observation tool, a research code base, a game, and one idea that didn't pan out — with dev updates." />
 <meta property="og:image" content="https://dmasceri.github.io/img/og-image.jpg" />
 <meta property="og:url" content="https://dmasceri.github.io/projects.html" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -71,6 +71,13 @@
               <span class="pi-title">MORPHFLIGHT</span>
               <span class="pi-tag">On-rails cave flyer, morph-weapon mechanic</span>
               <span class="pi-label">Playable prototype</span>
+            </a>
+          </li>
+          <li>
+            <a href="#peak-finder">
+              <span class="pi-title">Peak Finder</span>
+              <span class="pi-tag">Sandbar tracking from free satellite imagery</span>
+              <span class="pi-label closed">Not feasible</span>
             </a>
           </li>
         </ul>
@@ -363,6 +370,75 @@
                 <li><time>Jul 2026</time><span>Deployed a <b>live playable build</b> to GitHub Pages, with a self-playing demo reel across all five environments.</span></li>
                 <li><time>Jun 2026</time><span>Vertical slice: neon-vector overhaul, <b>5 swappable environments</b>, asteroid pass, and a directional dash mechanic.</span></li>
                 <li><time>Next</time><span>Lean into <b>parametric environment generation</b>; stress-test whether the morph verb carries longer sessions.</span></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- PEAK FINDER -->
+          <article class="card" id="peak-finder">
+            <div class="card-top">
+              <h3><a href="https://github.com/dmasceri/peak-finder">Peak Finder</a></h3>
+              <span class="status closed">Closed &middot; not feasible</span>
+            </div>
+            <p class="tagline">Can free satellite imagery tell a surfer where the sandbar peak is this week? No, and here is the proof</p>
+
+            <p>
+              Not every idea survives contact with the data, and I think the ones that don't are worth
+              showing. The question was simple: Sentinel-2 imagery is free, global, and repeats every
+              few days, so could a stack of recent scenes show where waves have been breaking along my
+              home stretch of Wrightsville Beach and point me at the bank that's working? Sandbars
+              shift every few weeks, and the surf-forecast sites don't cover that.
+            </p>
+
+            <figure class="figure">
+              <img src="img/peak-finder-superbank.jpg" alt="Same stretch of the Superbank on the Gold Coast: Sentinel-2 at 10 m resolution on a 2 m swell beside a 10 cm government aerial photo, which shows individual waves peeling down the point" />
+              <figcaption>The truth check. Same footprint on the Superbank: Sentinel-2 at 10 m on a 2 m day (left) beside the Queensland government&rsquo;s free 10 cm aerial (right). One of these shows a surfable wave.</figcaption>
+            </figure>
+
+            <p>
+              I ran the whole pilot in one session from an iPad on a plane, pulling crops of real
+              imagery through a cloud container instead of downloading anything. Three things killed it,
+              and none of them are fixable with better code. First, timing: the satellite passes at the
+              same clock time every visit, the outer bar at Wrightsville only breaks at low tide with
+              swell, and the swell comes with clouds. Across 18 months of low-cloud scenes, exactly two
+              lined up with low tide and a real swell. Second, the signal: at 10 m the foam you can see
+              is mostly the inside shorebreak, which tells you nothing about the bank outside. Third,
+              resolution: I ran the same pull over Superbank and Jeffreys Bay on their biggest clear
+              days of the year as a control. If it can't resolve a peak at a world-class point, it
+              won't at a beach break. It can't. The surf zone is a white band a few pixels wide.
+            </p>
+
+            <figure class="figure">
+              <img src="img/peak-finder-wb-dates.jpg" alt="Contact sheet of sixteen Sentinel-2 scenes of Wrightsville Beach island, several obscured by cloud" />
+              <figcaption>Wrightsville Beach, the 16 most recent scenes the catalog called under 30% cloud. Nine were actually clear. Summer flat spells make for clean pictures of nothing.</figcaption>
+            </figure>
+
+            <p>
+              <b style="color:var(--ink)">What I got out of it:</b> a clear answer in an afternoon instead
+              of a half-built pipeline in a month. The repo holds the findings, the scene inventory joined
+              with tide and swell at each overpass, the comparison images, and the free endpoints used to
+              produce them, so the idea doesn't get re-litigated next winter. It also names what would
+              actually work: a fixed camera doing low-tide time exposures, which is how the coastal
+              research station at Duck, NC has done it for decades. High resolution finds breaks, cadence
+              tracks them, and free imagery gives you one or the other, never both.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">rasterio</span>
+              <span class="tag">STAC</span>
+              <span class="tag">Sentinel-2 / Sentinel-1</span>
+              <span class="tag">NOAA CO-OPS</span>
+              <span class="tag">Claude Code</span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/dmasceri/peak-finder">Findings &amp; images <span class="arrow">&rarr;</span></a>
+            </div>
+
+            <div class="devlog">
+              <h4>Dev updates</h4>
+              <ul>
+                <li><time>Sep 2026</time><span>Ran the feasibility pilot end to end and <b>closed it as a negative result</b>: two usable scenes in 18 months, and 10 m pixels that can&rsquo;t resolve a peak even at Superbank.</span></li>
               </ul>
             </div>
           </article>

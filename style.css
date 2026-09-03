@@ -95,6 +95,7 @@ h1 { font-size: clamp(32px, 5.5vw, 46px); line-height: 1.1; letter-spacing: -0.0
 .status { font-size: 12px; background: var(--accent-soft); color: var(--accent); padding: 4px 11px; border-radius: 999px; white-space: nowrap; }
 .status.archive { background: #221f16; color: #cbb06a; }
 .status.wip { background: #10231c; color: #58c99a; }
+.status.closed { background: #2a1a1a; color: #d98b8b; }
 .tagline { font-size: 15px; color: var(--muted); margin: 2px 0 16px; font-weight: 500; }
 .card p { margin: 0 0 15px; font-size: 15.5px; color: #cfd3da; }
 .card p:last-of-type { margin-bottom: 0; }
@@ -134,6 +135,7 @@ blockquote.epigraph cite { display: block; margin-top: 6px; font-style: normal; 
   padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
 .pi-label.archive { background: #221f16; color: #cbb06a; }
 .pi-label.wip { background: #10231c; color: #58c99a; }
+.pi-label.closed { background: #2a1a1a; color: #d98b8b; }
 @media (max-width: 820px) {
   .devlog-layout { grid-template-columns: 1fr; gap: 20px; }
   .proj-index { position: static; grid-column: auto; }
